@@ -84,3 +84,41 @@ The [Getting Started](https://vaadin.com/docs/latest/getting-started) guide will
 App implementation. You'll learn how to set up your development environment, understand the project 
 structure, and find resources to help you add muscles to your skeleton — transforming it into a fully-featured 
 application.
+
+---
+
+## ⚙️ CI/CD Pipeline (GitHub Actions)
+
+Este projeto inclui uma **pipeline GitHub Actions** que automatiza o processo de build e publicação do ficheiro JAR.
+
+### 🔁 Funcionalidade da pipeline
+
+1. É executada automaticamente sempre que há um **push** na branch `main`.
+2. Faz o **checkout** do repositório e configura o **Java 21 (Temurin)**.
+3. **Compila** o projeto com o Maven (`mvn clean package`).
+4. **Copia** o ficheiro `.jar` gerado para a **raiz do repositório**, tornando-o acessível diretamente via interface web do GitHub.
+5. **Publica** o ficheiro `.jar` como **artefacto** no GitHub Actions.
+
+### 🧩 Excerto do ficheiro `build.yml`
+
+```yaml
+name: Build and Publish JAR
+on:
+  push:
+    branches:
+      - main  # (a) corre sempre que houver push na branch principal
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # (1) Fazer checkout do código
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # (2) Configurar Java (b)
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
