@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # (a) corre sempre que houver push na branch principal
-      - feature/qr-code-generator
+      - branch-feature/qr-code-generator
 
 jobs:
   build:
