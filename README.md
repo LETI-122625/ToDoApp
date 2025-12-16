@@ -122,3 +122,14 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+
+
+Foi criado um container MySQL através do Docker integrado no IntelliJ IDEA,
+usando a imagem oficial mysql:latest, com configuração de variáveis de ambiente
+e port binding na porta 3306. FEITO POR LETI-122625
+
+O Dev Container foi criado com sucesso no IntelliJ, sendo possível observar
+o contentor em execução no Docker local. O download do backend da IDE não
+foi concluído devido à ausência das ferramentas curl/wget na imagem base,
+limitação conhecida do modo automático. FEITO POR LETI-122625
+
